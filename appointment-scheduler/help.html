@@ -1,0 +1,156 @@
+<html>
+<head>
+<title>Optimal outpatient appointment scheduling tool (Help)</title>
+</head>
+<body bgcolor="#FFFFFF" link="#003399" vlink="#003399" alink="#003399">
+<img SRC="VUlogo.gif" width="292" height="72" ALIGN=left border="0"><br clear=all>
+<hr>
+
+<h2>Help Optimal outpatient appointment scheduling tool</h2>
+This calculator uses a local search procedure that converges to the
+optimal schedule with a weighted average of expected waiting times of
+patients, idle time of the doctor and tardiness as an objective.
+<br>
+Because the local search procedure takes a very long time, two local search procedures
+were implemented.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- One with a smaller neighborhood, which doesn't guarantee us to derive the global optimum,
+but gives good results within a reasonable time.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- One with a big neighborhood, which guarantees us to derive the global optimum,
+but the computing time can be very long.
+<br>
+The method of this tool is described in a <a href=http://www.math.vu.nl/~koole/articles/hcms07b>HCMS publication</a>.
+
+<h3>Model</h3>
+The model is a queuing system. The day/block length that a treatment/operation room is operational can be split in 
+a number of equal intervals of some length (for example a day from 8.00AM till 4.00PM can be split in
+48 intervals with length of 10 minutes). Within these intervals there should
+a number of patients be scheduled.<br>
+Our goal is to schedule these patients over those intervals in such a way that it minimizes the weighted average of
+expected waiting times of patients, idle time of the doctor and tardiness.<br>
+In the model we make the following assumptions:<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- The service times of patients are independent and exponential distributed.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- Patients come always right on time.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- Every patient has the same chance of not coming at all (no-show).<br>
+
+<h3>Individual schedule</h3>
+To calculate the individual schedule, the following parameters are used:<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- n: the nth patient.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- N: the total number of patients.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- I: the total number of intervals.<br>
+<font dir="ltr" style="margin-left: 20px; margin-right: 0px"></font>
+- T: the length of an interval.<br>
+The number of intervals are numbered from 1, ..., I.<br>
+Patient n arrives in interval round((n-1) * I / N)+1 at time round((n-1) * I / N) * T.<br>
+For example: N = 5 patients, I = 8 intervals and T = 15 minutes. <br>
+Patient 3 arrives in interval round((3-1)*8/5)+1 = 4 at time round((3-1)*8/5)*15 = 00:45.<br>
+
+<h3>Required Input</h3>
+The input consists of:<br>
+<TABLE>
+	    <tr>
+            <td width = 20></td>
+            <td width = 170>- Total number of arrivals:</td>
+            <td width = 700>The total number of patients which must be treated</td>
+        </tr>
+    	<tr>
+    		<td></td>
+            <td>- Average service time:</td>
+            <td>The average time for a treatment</td>
+        </tr>
+            <tr>
+    		<td></td>
+            <td>- Standard deviation:</td>
+            <td>The standard deviation of treatment times</td>
+        </tr>
+		<tr>
+            <td></td>
+            <td>- Total available time:</td>
+            <td>The total available time of the system</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Schedule in intervals of ... minutes:</td>
+            <td>The length of an interval in minutes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Percentage no-shows:</td>
+            <td>Which percentage of patients are not coming at all?</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Time limit for the search</td>
+            <td>Time limit to stop the optimization before it terminates</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Patient-centric:</td>
+            <td rowspan=3> There isn&#39;t a best way to choose weights. It depends on the objective.
+So if the main objective is patient-centric, then that factor must have a bigger weight. </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Doctor-centric:</td>
+            <td></td>
+        </tr>
+        
+    </TABLE>
+
+
+<h3>Output</h3>
+The output consists of:
+<TABLE>
+    <tr>
+            <td width=20></td>
+            <td width=170>- Waiting time:</td>
+            <td width=700>This is the average time a patient is waiting for her/his treatment.</td>
+        </tr>
+<tr>
+            <td></td>
+            <td>- Idle time:</td>
+            <td>This is the average total time within the span a doctor is
+     waiting for a patient.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Tardiness:</td>
+            <td>This is the probability that the session exceeds the planned finishing
+time times the average excess.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Fraction of excess:</td>
+            <td>This is the probability that the last
+     patient finishes its treatment after the end of the working day/block.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Make span:</td>
+            <td>This is the average time in which all patients have been treated.</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>- Lateness:</td>
+            <td>Day/block length -/- make span</td>
+        </tr>
+        
+    </TABLE>
+
+
+
+
+
+<hr>
+<table WIDTH=100%>
+<tr><td WIDTH=0% ALIGN=left><a HREF="disclaimer.html">disclaimer</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a HREF="http://www.math.vu.nl/~koole/ccmath">related tools</a></td><td WIDTH=0% ALIGN=center>Copyright &copy; 2005-2018 <A HREF="http://www.math.vu.nl/~gckaando/" TARGET="_blank">Guido Kaandorp</A>, <A HREF="http://www.few.vu.nl/~koole">Ger Koole</A> and Jerry Timmer</TD><td WIDTH=0% ALIGN=right><a HREF="index.php">go back to the calculator</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a HREF="mailto: gckaando@few.vu.nl">contact</a></td>
+</table>
+</body>
+</html>
