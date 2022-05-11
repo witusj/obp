@@ -6,16 +6,6 @@ The purpose of this project is:
 
 2.  Improve the efficiency of the computations using alternative algorithms
 
-## Python implementation
-
-The original code was written in PHP and served as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In a first iteration we have replicated the code in Python and tested its functionality.
-
-While testing the initial Python implementation we observed very high calculation times which would make it unsuitable for real use cases. As a first improvement we reviewed all the `for` loops and eliminated redundancy.
-
-We noticed for instance, that in the original design for each round in the loop a Poisson distribution had to be recreated. However the base parameters of the distribution were the same. Therefore we placed the routine outside of the loop.
-
-The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see whether it optimizes on an objective score. In the original design each time after a patent was shifted one position a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realized that up till the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
-
 ## Default testing parameters
 
 We've always tested using the following schedule parameters:
@@ -41,6 +31,16 @@ We've always tested using the following schedule parameters:
 `alpha_T = 0.4  # patient doctor centric slider`
 
 `alpha_W = 0.4`
+
+## Python implementation
+
+The original code was written in PHP and served as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In a first iteration we have replicated the code in Python and tested its functionality.
+
+While testing the initial Python implementation we observed very high calculation times which would make it unsuitable for real use cases. As a first improvement we reviewed all the `for` loops and eliminated redundancy.
+
+We noticed for instance, that in the original design for each round in the loop a Poisson distribution had to be recreated. However the base parameters of the distribution were the same. Therefore we placed the routine outside of the loop.
+
+The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see whether it optimizes on an objective score. In the original design each time after a patent was shifted one position a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realized that up till the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
 
 Isaac: --- Describe parallelization ---
 
