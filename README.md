@@ -34,7 +34,7 @@ We've always tested using the following schedule parameters:
 
 ## Python implementation
 
-The original code was written in PHP and offered as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In a first iteration we have replicated the code in Python and tested its functionality.
+The original code was written in PHP and offered as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In a first iteration we have translated the code to Python and tested its functionality.
 
 While testing the initial Python implementation we observed very high calculation times which would make it unsuitable for real use cases. As a first improvement we reviewed all the `for` loops and eliminated redundancy.
 
