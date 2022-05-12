@@ -2,7 +2,7 @@
 
 The purpose of this project is:
 
-1.  Implement a Python implementation for the scheduling algorithm developed by Kaandorp / Koole [[1]](#1) and Koeleman / Koole [[2]](#2)
+1.  Develop a Python implementation for the scheduling algorithm developed by Kaandorp / Koole [[1]](#1) and Koeleman / Koole [[2]](#2)
 
 2.  Improve the efficiency of the computations using alternative algorithms
 
