@@ -34,13 +34,14 @@ We've always tested using the following schedule parameters:
 
 ## Python implementation
 
-The original code was written in PHP and offered as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In a first iteration we have translated the code to Python and tested its functionality.
+The original code was written in PHP and offered as a [web application](https://www.gerkoole.com/OBP/appointment-scheduler.php). In the first iteration we translated the code to Python and tested its functionality.
 
-While testing the initial Python implementation we observed very high calculation times which would make it unsuitable for real use cases. As a first improvement we reviewed all the `for` loops and eliminated redundancy.
+While testing the initial Python implementation we observed very high computation times which would make it unsuitable for any real use case. As a first improvement we reviewed all the for loops and eliminated redundancies.
 
-We noticed for instance, that in the original design for each round in the loop a Poisson distribution had to be recreated. However the base parameters of the distribution were the same. Therefore we placed the routine outside of the loop.
+We noticed in the original design a Poisson distribution was being recreated in each loop. However the base parameters of the distribution were the same. Therefore, we placed these calculations outside of the loop.
 
-The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see whether it optimizes on an objective score. In the original design each time after a patent was shifted one position a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realized that up till the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
+The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see which position is optimal based on an objective score. In the original design, each time a patent was shifted one position to the right a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realised that the schedule up until the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
+
 
 Isaac: --- Describe parallelization ---
 
@@ -62,9 +63,9 @@ For each individual a fitness score is calculated. This is the same as the objec
 
 #### Crossover
 
-From the old population two parent schedules are sampled. Schedules with a higher fitness score are more likely to be selected. Using a crossover routine two child schedules are generated. During a crossover patients are transferred from parent 1 to parent 2, one at a time. To maintain the fixed total balance of patients in a schedule in a second round the same number of of patients are transferred from parent 2 to parent 1.
+From the old population two parent schedules are sampled. Schedules with a higher fitness score are more likely to be selected. Using a crossover routine, two child schedules are generated. During a crossover, patients are transferred from parent 1 to parent 2 one at a time. To maintain the fixed total balance of patients in a schedule, the second round transfers the same number of patients from parent 2 to parent 1.
 
-The position or time slot from which patients are transferred and are transferred to depends on the number of patients in the time slots. For the parent that loses patients time slots with high patient numbers are more likely to be chosen. For the receiving parent time slots with smaller amounts of patients are more likely to be picked as a destination for new patients. This construction reflects the preference for schedules where patients are more spread out.
+The position or time slot from which patients are transferred and are transferred to depends on the number of patients in the time slots. For the parent that loses patients, time slots with high patient numbers are more likely to be chosen. For the receiving parent, time slots with smaller amounts of patients are more likely to be picked as a destination. This construction reflects the preference for schedules where patients are more spread out.
 
 <div>
 
@@ -74,7 +75,7 @@ The position or time slot from which patients are transferred and are transferre
 
 #### Mutation
 
-Mutation is a sort of serendipity mechanism to mitigate the risk of getting stuck in a local optimum. In random cases after a crossover the algorithm might swap two patients from different positions in the schedule.
+Mutation is a sort of serendipity mechanism to mitigate the risk of getting stuck in a local optimum. In random cases after a crossover the algorithm might swap the patients from two different positions in the schedule.
 
 <div>
 
