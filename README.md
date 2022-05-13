@@ -82,7 +82,9 @@ Mutation is a sort of serendipity mechanism to mitigate the risk of getting stuc
 
 </div>
 
-Click the following chart for a performance overview. [![click here](https://github.com/witusj/obp/blob/master/images/plot1.png?raw=true)](https://witusj.github.io/obp/charts/results.html). The charts are interactive and show for each generation the lowes fitness score together with the corresponding schedule. Also the computation times have been added. These have to be regarded as indications and are based on individual runs. However it is clear that for larger populations and number of generations the computation time increases significantly.
+Click the following chart for a performance overview. [![click here](https://github.com/witusj/obp/blob/master/images/plot1.png?raw=true)](https://witusj.github.io/obp/charts/results.html).
+
+The charts are interactive and show for each generation the lowes fitness score together with the corresponding schedule. Also the computation times have been added. These have to be regarded as indications and are based on individual runs. However it is clear that for larger populations and number of generations the computation time increases significantly.
 
 The largest part of the computation time is taken up by recalculating the Markov Chain for each new solution. This takes around 1.4 seconds per schedule.
 
