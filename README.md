@@ -88,7 +88,7 @@ Initial results can be found [here](https://witusj.github.io/obp/charts/results.
 
 The largest part of the computation time is taken up by recalculating the Markov Chain for each new solution. This takes around 1.4 seconds per schedule.
 
-One way of dealing with this is by distrbuting the computation tasks over different cores of the CPU. We tested this using 6 cores. This system reduced the calculation times radically as can be seen [here](https://witusj.github.io/obp/charts/resultsprl.html)
+One way of dealing with this is by distrbuting the computation tasks over different cores of the CPU. We tested this using 6 cores. This system reduced the calculation times radically as can be seen [![here](https://github.com/witusj/obp/blob/master/images/plot1.png?raw=true)](https://witusj.github.io/obp/charts/resultsprl.html)
 
 ## References
 
