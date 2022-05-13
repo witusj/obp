@@ -84,7 +84,11 @@ Mutation is a sort of serendipity mechanism to mitigate the risk of getting stuc
 
 Witek --- Describe results and parallelization
 
-Initial results can be found [here](https://witusj.github.io/obp/charts/results.html)
+Initial results can be found [here](https://witusj.github.io/obp/charts/results.html). The charts are interactive and show for each generation the lowes fitness score together with the corresponding schedule. Also the computation times have been added. These have to be regarded as indications and are based on individual runs. However it is clear that for larger populations and number of generations the computation time increases significantly.
+
+The largest part of the computation time is taken up by recalculating the Markov Chain for each new solution. This takes around 1.4 seconds per schedule.
+
+One way of dealing with this is by distrbuting the computation tasks over different cores of the CPU. We tested this using 6 cores. This system reduced the calculation times radically as can be seen [here](https://witusj.github.io/obp/charts/resultsprl.html)
 
 ## References
 
