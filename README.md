@@ -40,7 +40,7 @@ While testing the initial Python implementation we observed very high computatio
 
 We noticed in the original design a Poisson distribution was being recreated in each loop. However the base parameters of the distribution were the same. Therefore, we placed these calculations outside of the loop.
 
-The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see which position is optimal based on an objective score. In the original design, each time a patent was shifted one position to the right a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realised that the schedule up until the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
+The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see which position is optimal based on an objective score. In the original design, each time a patent was shifted one position to the right a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realised that up until the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
 
 
 Isaac: --- Describe parallelization ---
