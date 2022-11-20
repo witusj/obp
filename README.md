@@ -42,7 +42,7 @@ We noticed in the original design a Poisson distribution was being recreated in 
 
 The algorithm also contains a routine that generates a solution by gradually shifting one patient through the schedule to see which position is optimal based on an objective score. In the original design, each time a patent was shifted one position to the right a Markov Chain (?) was recalculated starting at the first time slot in the schedule. We realised that up until the time slot where the actual patient's shift took place the schedule and the corresponding Markov Chain was the same. We could save time by starting the recalculation from the shifted time slot.
 
-In our algorithm the local search has been parallelised. Each patient is evaluated at a different slot in the schedule concurrently. For example, in the schedule below, the patient in the 6th time slot is evaluated across the 9 other possible positions. 
+In our algorithm the local search has been parallelised. Each patient is evaluated at a different slot in the schedule concurrently. For example, in the schedule below, the patient in the 6th time slot is evaluated across the 9 other possible positions.
 
 Original schedule:
 
@@ -74,7 +74,7 @@ Schedules evaluated:
 
 We have experimented with surrogate modelling, although we have found it to be unsuccessful. Two models were primarily tested: a simple fully connected neural network built using scikit-learn and a recurrent neural network built using TensorFlow and Keras. Both trained on schedule and objective value data output from the local search algorithm.
 
-Unfortunately the two models suffer a similar problem that stems from a lack of varied data and would fall into pitfalls of stacking patients in the same time slots. It became apparent that as we need to generate so much data we should instead experiment with using it as a lookup table. This could increase efficiency over time as more experiments are ran. 
+Unfortunately the two models suffer a similar problem that stems from a lack of varied data and would fall into pitfalls of stacking patients in the same time slots. It became apparent that as we need to generate so much data we should instead experiment with using it as a lookup table. This could increase efficiency over time as more experiments are ran.
 
 ### Genetic Algorithm
 
